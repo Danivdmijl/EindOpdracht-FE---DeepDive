@@ -1,0 +1,17 @@
+@use "./abstracts/colors";
+
+body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: black;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+main{
+    width: 95vw;
+    height: 90vh;
+    padding: 5rem;
+    background: #FFFFFF;    
+}
