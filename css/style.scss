@@ -29,6 +29,7 @@ main {
 }
 
 .header {
+  background: blue;
   width: 100%;
   height: 20%;
   display: flex;
@@ -40,13 +41,13 @@ main {
 }
 
 .mainSection {
+  background: green;
   width: 100%;
   height: 81%;
   display: flex;
-  padding-left: 3rem;
-  padding-right: 3rem;
 }
 .mainSection__left {
+  background: yellow;
   width: 50%;
   height: 100%;
   display: flex;
@@ -54,6 +55,7 @@ main {
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: 2rem;
+  padding-left: 10rem;
 }
 .mainSection__left__cards {
   border: solid black 0.3rem;
@@ -64,6 +66,7 @@ main {
   justify-content: center;
 }
 .mainSection__right {
+  background: red;
   width: 50%;
   height: 100%;
   display: flex;
@@ -71,11 +74,12 @@ main {
   align-items: flex-end;
 }
 .mainSection__right__container {
+  background: pink;
   width: 80%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  gap: 2rem;
 }
 .mainSection__right__container__card {
   border: solid black 0.3rem;
@@ -86,56 +90,15 @@ main {
   justify-content: center;
 }
 .mainSection__right__container__text {
-  font-weight: 400;
-  width: 100%;
-  padding: 2rem;
-  font-size: 1.5rem;
-}
-.mainSection__right__container__buttonWrapper {
-  width: 97%;
-  display: flex;
-  justify-content: space-between;
-}
-.mainSection__right__container__button {
-  display: inline-block;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  border: none;
-  background-color: black;
-  color: #fff;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-  width: 27rem;
-  height: 3rem;
-}
-.mainSection__right__container__button:hover {
-  background-color: #9c9c9c;
-}
-
-a:link, a:visited {
-  background-color: black;
-  color: white;
-  padding: 1.5rem 2rem;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  height: 5.5rem;
-  width: 13rem;
-  border-radius: 5%;
-}
-
-a:hover, a:active {
-  background-color: #9c9c9c;
+  color: green;
 }
 
 .footer {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  background: orange;
   height: 5.7%;
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=style.scss.map */

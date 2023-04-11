@@ -1,11 +1,13 @@
 .mainSection{
-    background: green;
+    // background: green;
     width: 100%;
     height: 81%;
     display: flex;
+    padding-left: 3rem;
+    padding-right: 3rem;
 
     &__left{
-        background: yellow;
+        // background: yellow;
         width: 50%;
         height: 100%;
         display: flex;
@@ -13,7 +15,7 @@
         justify-content: flex-start;
         flex-wrap: wrap;
         gap: 2rem;
-        padding-left: 10rem;
+        // padding-left: 10rem;
 
         &__cards{
             // background: purple;
@@ -27,7 +29,7 @@
     }
 
     &__right{
-        background: red;
+        // background: red;
         width: 50%;
         height: 100%;
         display: flex;
@@ -35,12 +37,13 @@
         align-items: flex-end;
 
         &__container{
-            background: pink;
+            // background: pink;
             width: 80%;
             height: 100%;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            align-items: flex-end;
+
 
             &__card{
                 // background: purple;
@@ -53,9 +56,54 @@
             }
     
             &__text{
-                max-width: 69rem;
+                font-weight: 400;
+                width: 100%;
+                padding: 2rem;
+                font-size: 1.5rem;
+            }
+
+            &__buttonWrapper{
+                width: 97%;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            &__button{
+                display: inline-block;
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                font-weight: bold;
+                text-transform: uppercase;
+                border: none;
+                background-color: black;
+                color: #fff;
+                border-radius: 0.5rem;
+                cursor: pointer;
+                transition: background-color 0.3s ease-in-out;
+                width: 27rem;
+                height: 3rem;
+
+                &:hover{
+                    background-color: #9c9c9c;
+                }
             }
         }
     }
 }
+
+a:link, a:visited {
+    background-color: black;
+    color: white;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    height: 5.5rem;
+    width: 13rem;
+    border-radius: 5%;
+  }
+  
+  a:hover, a:active {
+    background-color: #9c9c9c;
+  }
 
