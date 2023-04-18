@@ -1,18 +1,18 @@
-class DataLoader {
-    constructor(url) {
-      this.url = url;
-    }
+// class DataLoader {
+//     constructor(url) {
+//       this.url = url;
+//     }
   
-    loadData() {
-      fetch(this.url)
-        .then(response => response.json())
-        .then(data => console.log(data.episodes))
-        .catch(error => console.error(error));
-    }
-  }
+//     loadData() {
+//       fetch(this.url)
+//         .then(response => response.json())
+//         .then(data => console.log(data.episodes))
+//         .catch(error => console.error(error));
+//     }
+//   }
   
-  const dataLoader = new DataLoader('../data/data.json');
-  dataLoader.loadData();
+//   const dataLoader = new DataLoader('../data/data.json');
+//   dataLoader.loadData();
 
 
 class Header {
@@ -42,78 +42,121 @@ class Header {
 }
 
 class MainPanel {
-    sectionElement;
-    LeftArticleElement;
-    LeftSectionCardElement;
+  placeToRenderMain;
+  leftSection;
+  rightSection;
 
-    placeToRenderMainSection;
-    
-  
-    constructor(placeToRenderMainSection) {
-      this.placeToRenderMainSection = document.getElementsByTagName(
-        placeToRenderMainSection
-      )[0];
-      this.sectionElement = document.createElement("section");
-      this.sectionElement.classList = "mainSection";
+  constructor(placeToRenderMain) {
+    this.placeToRenderMain = document.getElementsByTagName(placeToRenderMain)[0];
 
-      this.LeftArticleElement = document.createElement("article");
-      this.LeftArticleElement.classList = "mainSection__left";
+    this.mainElement = document.createElement("section");
+    this.mainElement.classList.add("mainSection");
 
-      this.LeftSectionCardElement1 = document.createElement("article1");
-      this.LeftSectionCardElement2 = document.createElement("article2");
-      this.LeftSectionCardElement3 = document.createElement("article3");
-      this.LeftSectionCardElement4 = document.createElement("article4");
-      this.LeftSectionCardElement1.classList = "mainSection__left__cards";
-      this.LeftSectionCardElement2.classList = "mainSection__left__cards";
-      this.LeftSectionCardElement3.classList = "mainSection__left__cards";
-      this.LeftSectionCardElement4.classList = "mainSection__left__cards";
-    }
-  
-    render() {
-      this.placeToRenderMainSection.appendChild(this.sectionElement);
-      this.sectionElement.appendChild(this.LeftArticleElement);
-      this.LeftArticleElement.appendChild(this.LeftSectionCardElement1);
-      this.LeftArticleElement.appendChild(this.LeftSectionCardElement2);
-      this.LeftArticleElement.appendChild(this.LeftSectionCardElement3);
-      this.LeftArticleElement.appendChild(this.LeftSectionCardElement4);
+    this.leftSection = new LeftSection(this.mainElement);
+    this.rightSection = new RightPanel(this.mainElement);
+  }
+
+  render() {
+    this.placeToRenderMain.appendChild(this.mainElement);
+    this.leftSection.render();
+    this.rightSection.render();
+  }
+}
+
+class LeftSection {
+  mainElement;
+  sectionElement;
+  LeftArticleElement;
+  placeToRenderMainSection;
+
+  constructor(mainElement) {
+    this.mainElement = mainElement;
+
+    this.LeftArticleElement = document.createElement("article");
+    this.LeftArticleElement.classList.add("mainSection__left");
+
+    for (let i = 1; i <= 4; i++) {
+      const sectionCardElement = document.createElement("article");
+      sectionCardElement.classList.add("mainSection__left__cards");
+      const LeftSectionCardInfoElement = document.createElement("h4");
+      LeftSectionCardInfoElement.classList.add("mainSection__left__cards__infotext");
+      LeftSectionCardInfoElement.innerText = "Ian en de Snoepdief";
+      sectionCardElement.appendChild(LeftSectionCardInfoElement);
+      const LeftSectionCardDatumElement = document.createElement("h4");
+      LeftSectionCardDatumElement.classList.add("mainSection__left__cards__img--datum");
+      LeftSectionCardDatumElement.innerText = "12-4-2023";
+      sectionCardElement.appendChild(LeftSectionCardDatumElement);
+      const LeftSectionCardIMGElement = document.createElement("img");
+      LeftSectionCardIMGElement.classList.add("mainSection__left__cards__img");
+      LeftSectionCardIMGElement.src = "../img/Plaatje.webp";
+      sectionCardElement.appendChild(LeftSectionCardIMGElement);
+
+      this.LeftArticleElement.appendChild(sectionCardElement);
     }
   }
 
-class Footer{
-    footerElement;
-    h4TextElement;
-    placeToRenderFooter;
+  render() {
+    this.mainElement.appendChild(this.LeftArticleElement);
+  }
+}
 
-    constructor(placeToRenderFooter){
-        this.placeToRenderFooter = document.getElementsByTagName(placeToRenderFooter)[0];
-        this.footerElement = document.createElement("footer");
-        this.footerElement.classList = "footer";
+class RightPanel {
+  placeToRenderMainSection;
+  RightArticleElement;
 
-        this.h4TextElement = document.createElement("h4");
-        this.h4TextElement.innerText = "Gemaakt door - Dani SD2D MediaCollege";
-    }
+  constructor(mainElement) {
+    this.mainElement = mainElement;
 
-    render() {
-        this.footerElement.appendChild(this.h4TextElement);
-        this.placeToRenderFooter.appendChild(this.footerElement);
-    }
+    this.RightArticleElement = document.createElement("article");
+    this.RightArticleElement.classList.add("mainSection__right");
+  }
+
+  render() {
+    this.mainElement.appendChild(this.RightArticleElement);
+  }
 }
 
 
-class App {
-    Header;
-    Footer;
-    MainPanel;
 
-    constructor() {
-        this.header = new Header("main");
-        this.footer = new Footer("main");
-        this.MainPanel = new MainPanel("main");
-        
-        this.header.render();
-        this.MainPanel.render();
-        this.footer.render();            
-    }
+class Footer {
+  footerElement;
+  h4TextElement;
+  placeToRenderFooter;
+
+  constructor(placeToRenderFooter) {
+    this.placeToRenderFooter = document.getElementsByTagName(placeToRenderFooter)[0];
+    this.footerElement = document.createElement("footer");
+    this.footerElement.classList = "footer";
+
+    this.h4TextElement = document.createElement("h4");
+    this.h4TextElement.innerText = "Gemaakt door - Dani SD2D MediaCollege";
+  }
+
+  render() {
+    this.footerElement.appendChild(this.h4TextElement);
+    this.placeToRenderFooter.appendChild(this.footerElement);
+  }
+}
+
+class App {
+  Header;
+  Footer;
+  LeftPanel;
+  RightPanel;
+  MainPanel;
+
+  constructor() {
+    this.header = new Header("main");
+    this.MainPanel = new MainPanel("main");
+    this.footer = new Footer("main");
+    this.LeftPanel = new LeftSection(this.MainPanel.mainElement);
+    this.RightPanel = new RightPanel(this.MainPanel.mainElement);
+
+    this.header.render();
+    this.MainPanel.render();
+    this.footer.render();
+  }
 }
 
 const app = new App();
+
