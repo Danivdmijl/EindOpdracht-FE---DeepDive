@@ -59,14 +59,23 @@ class MainPanel {
       this.LeftArticleElement = document.createElement("article");
       this.LeftArticleElement.classList = "mainSection__left";
 
-      this.LeftSectionCardElement = document.createElement("article");
-      this.LeftSectionCardElement.classList = "mainSection__left__cards";
+      this.LeftSectionCardElement1 = document.createElement("article1");
+      this.LeftSectionCardElement2 = document.createElement("article2");
+      this.LeftSectionCardElement3 = document.createElement("article3");
+      this.LeftSectionCardElement4 = document.createElement("article4");
+      this.LeftSectionCardElement1.classList = "mainSection__left__cards";
+      this.LeftSectionCardElement2.classList = "mainSection__left__cards";
+      this.LeftSectionCardElement3.classList = "mainSection__left__cards";
+      this.LeftSectionCardElement4.classList = "mainSection__left__cards";
     }
   
     render() {
       this.placeToRenderMainSection.appendChild(this.sectionElement);
       this.sectionElement.appendChild(this.LeftArticleElement);
-      this.LeftArticleElement.appendChild(this.LeftSectionCardElement);
+      this.LeftArticleElement.appendChild(this.LeftSectionCardElement1);
+      this.LeftArticleElement.appendChild(this.LeftSectionCardElement2);
+      this.LeftArticleElement.appendChild(this.LeftSectionCardElement3);
+      this.LeftArticleElement.appendChild(this.LeftSectionCardElement4);
     }
   }
 
