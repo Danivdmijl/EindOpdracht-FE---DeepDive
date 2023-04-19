@@ -1,18 +1,30 @@
-// class DataLoader {
-//     constructor(url) {
-//       this.url = url;
-//     }
-  
-//     loadData() {
-//       fetch(this.url)
-//         .then(response => response.json())
-//         .then(data => console.log(data.episodes))
-//         .catch(error => console.error(error));
-//     }
-//   }
-  
-//   const dataLoader = new DataLoader('../data/data.json');
-//   dataLoader.loadData();
+const num1 = Math.floor(Math.random() * 8);
+const num2 = Math.floor(Math.random() * 8);
+const num3 = Math.floor(Math.random() * 8);
+const num4 = Math.floor(Math.random() * 8);
+
+console.log(num1, num2, num3, num4);
+
+
+
+class GetDataFromApi {
+  url = "";
+  data = null;
+
+  constructor(newURL) {
+      this.url = newURL;
+  }
+
+  async getData() {
+      await fetch(this.url)
+          .then(function (response) {
+              return response.json();
+          }).then((data) => {
+              this.data = data;
+          });
+      return this.data;
+  }
+}
 
 
 class Header {
@@ -31,7 +43,7 @@ class Header {
 
         this.h2LogoTextElement = document.createElement("h2");
         this.h2LogoTextElement.classList = "header__logo";
-        this.h2LogoTextElement.innerText = "Logo Text";
+        this.h2LogoTextElement.innerText = "Logotext";
     }
 
     render() {
@@ -68,6 +80,7 @@ class LeftSection {
   sectionElement;
   LeftArticleElement;
   placeToRenderMainSection;
+  GetDataFromApi;
 
   constructor(mainElement) {
     this.mainElement = mainElement;
@@ -103,16 +116,73 @@ class LeftSection {
 class RightPanel {
   placeToRenderMainSection;
   RightArticleElement;
+  rightContainerElement;
+  rightSectionCardElement;
+  rightSectionInfoElement;
+  rightSectionDatumElement;
+  rightSectionTextElement;
+  rightAudioSectionElement;
+  rightAudioElement;
+  rightSourceElement;
 
-  constructor(mainElement) {
+  constructor(mainElement, data) {
     this.mainElement = mainElement;
+    this.data = data;
 
     this.RightArticleElement = document.createElement("article");
     this.RightArticleElement.classList.add("mainSection__right");
+
+    this.rightContainerElement = document.createElement("section");
+    this.rightContainerElement.classList.add("mainSection__right__container");
+
+    this.rightSectionCardElement = document.createElement("article");
+    this.rightSectionCardElement.classList.add("mainSection__right__container__card");
+
+    this.rightSectionInfoElement = document.createElement("h4");
+    this.rightSectionInfoElement.classList.add("mainSection__left__cards__infotext");
+    this.rightSectionInfoElement.innerText = "Ian en de Snoepdief";
+
+
+    this.rightSectionDatumElement = document.createElement("h4");
+    this.rightSectionDatumElement.classList.add("mainSection__left__cards__img--datum");
+    this.rightSectionDatumElement.innerText = ("12-4-2023");
+
+    this.rightSectionIMGElement = document.createElement("img");
+    this.rightSectionIMGElement.classList.add("mainSection__left__cards__img");
+    this.rightSectionIMGElement.src = "../img/plaatje.webp";
+
+    this.rightSectionTextElement = document.createElement("p");
+    this.rightSectionTextElement.classList.add("mainSection__right__container__text");
+    this.rightSectionTextElement.innerText = ("Lorem ");
+
+    this.rightAudioSectionElement = document.createElement("section");
+    this.rightAudioSectionElement.classList.add("mainSection__right__container__buttonWrapper");
+
+    this.rightAudioElement = document.createElement("audio");
+    this.rightAudioElement.src = "../Audio/unlimited.mp3";
+    this.rightAudioElement.controls = true;
+
+    this.rightSourceElement = document.createElement("a");
+    this.rightSourceElement.classList.add("mainSection__right__container__source")
+    this.rightSourceElement.innerText = "Source >";
+    this.rightSourceElement.setAttribute("href", "https://www.youtube.com/watch?v=aKd_7kGalEA");
+
+    
   }
 
   render() {
     this.mainElement.appendChild(this.RightArticleElement);
+
+    this.RightArticleElement.appendChild(this.rightContainerElement);
+    this.rightContainerElement.appendChild(this.rightSectionCardElement);
+    this.rightSectionCardElement.appendChild(this.rightSectionInfoElement);
+    this.rightSectionCardElement.appendChild(this.rightSectionDatumElement);
+    this.rightSectionCardElement.appendChild(this.rightSectionIMGElement);
+
+    this.rightContainerElement.appendChild(this.rightSectionTextElement);
+    this.rightContainerElement.appendChild(this.rightAudioSectionElement);
+    this.rightAudioSectionElement.appendChild(this.rightAudioElement);
+    this.rightAudioSectionElement.appendChild(this.rightSourceElement);
   }
 }
 
@@ -144,6 +214,7 @@ class App {
   LeftPanel;
   RightPanel;
   MainPanel;
+  GetDataFromApi;
 
   constructor() {
     this.header = new Header("main");
@@ -151,6 +222,12 @@ class App {
     this.footer = new Footer("main");
     this.LeftPanel = new LeftSection(this.MainPanel.mainElement);
     this.RightPanel = new RightPanel(this.MainPanel.mainElement);
+
+    this.GetDataFromApi = new GetDataFromApi("../data/data.json");
+    this.GetDataFromApi
+        .getData().then((data) => {
+          console.log(data);
+        });
 
     this.header.render();
     this.MainPanel.render();
