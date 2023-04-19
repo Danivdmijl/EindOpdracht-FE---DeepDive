@@ -12,45 +12,45 @@ class GetDataFromApi {
   data = null;
 
   constructor(newURL) {
-      this.url = newURL;
+    this.url = newURL;
   }
 
   async getData() {
-      await fetch(this.url)
-          .then(function (response) {
-              return response.json();
-          }).then((data) => {
-              this.data = data;
-          });
-      return this.data;
+    await fetch(this.url)
+      .then(function (response) {
+        return response.json();
+      }).then((data) => {
+        this.data = data;
+      });
+    return this.data;
   }
 }
 
 
 class Header {
-    headerElement;
-    ILogoelement;
-    h2LogoTextElement
-    placeToRenderHeader;
+  headerElement;
+  ILogoelement;
+  h2LogoTextElement
+  placeToRenderHeader;
 
-    constructor(placeToRenderHeader) {
-        this.placeToRenderHeader = document.getElementsByTagName(placeToRenderHeader)[0];
-        this.headerElement = document.createElement("header");
-        this.headerElement.classList = "header";
+  constructor(placeToRenderHeader) {
+    this.placeToRenderHeader = document.getElementsByTagName(placeToRenderHeader)[0];
+    this.headerElement = document.createElement("header");
+    this.headerElement.classList = "header";
 
-        this.ILogoelement = document.createElement("i");
-        this.ILogoelement.classList = "fa-solid fa-blog header__logo";
+    this.ILogoelement = document.createElement("i");
+    this.ILogoelement.classList = "fa-solid fa-blog header__logo";
 
-        this.h2LogoTextElement = document.createElement("h2");
-        this.h2LogoTextElement.classList = "header__logo";
-        this.h2LogoTextElement.innerText = "Logotext";
-    }
+    this.h2LogoTextElement = document.createElement("h2");
+    this.h2LogoTextElement.classList = "header__logo";
+    this.h2LogoTextElement.innerText = "Logotext";
+  }
 
-    render() {
-        this.headerElement.appendChild(this.ILogoelement);
-        this.headerElement.appendChild(this.h2LogoTextElement);
-        this.placeToRenderHeader.appendChild(this.headerElement);
-    }
+  render() {
+    this.headerElement.appendChild(this.ILogoelement);
+    this.headerElement.appendChild(this.h2LogoTextElement);
+    this.placeToRenderHeader.appendChild(this.headerElement);
+  }
 }
 
 class MainPanel {
@@ -88,24 +88,31 @@ class LeftSection {
     this.LeftArticleElement = document.createElement("article");
     this.LeftArticleElement.classList.add("mainSection__left");
 
-    for (let i = 1; i <= 4; i++) {
-      const sectionCardElement = document.createElement("article");
-      sectionCardElement.classList.add("mainSection__left__cards");
-      const LeftSectionCardInfoElement = document.createElement("h4");
-      LeftSectionCardInfoElement.classList.add("mainSection__left__cards__infotext");
-      LeftSectionCardInfoElement.innerText = "Ian en de Snoepdief";
-      sectionCardElement.appendChild(LeftSectionCardInfoElement);
-      const LeftSectionCardDatumElement = document.createElement("h4");
-      LeftSectionCardDatumElement.classList.add("mainSection__left__cards__img--datum");
-      LeftSectionCardDatumElement.innerText = "12-4-2023";
-      sectionCardElement.appendChild(LeftSectionCardDatumElement);
-      const LeftSectionCardIMGElement = document.createElement("img");
-      LeftSectionCardIMGElement.classList.add("mainSection__left__cards__img");
-      LeftSectionCardIMGElement.src = "../img/Plaatje.webp";
-      sectionCardElement.appendChild(LeftSectionCardIMGElement);
+    this.GetDataFromApi = new GetDataFromApi("../data/data.json");
 
-      this.LeftArticleElement.appendChild(sectionCardElement);
-    }
+    // Use async/await to wait for data to be fetched from API
+    (async () => {
+      const data = await this.GetDataFromApi.getData();
+
+      for (let i = 1; i <= 4; i++) {
+        const sectionCardElement = document.createElement("article");
+        sectionCardElement.classList.add("mainSection__left__cards");
+        const LeftSectionCardInfoElement = document.createElement("h4");
+        LeftSectionCardInfoElement.classList.add("mainSection__left__cards__infotext");
+        LeftSectionCardInfoElement.innerText = data.episodes[num1].title;
+        sectionCardElement.appendChild(LeftSectionCardInfoElement);
+        const LeftSectionCardDatumElement = document.createElement("h4");
+        LeftSectionCardDatumElement.classList.add("mainSection__left__cards__img--datum");
+        LeftSectionCardDatumElement.innerText = "12-4-2023";
+        sectionCardElement.appendChild(LeftSectionCardDatumElement);
+        const LeftSectionCardIMGElement = document.createElement("img");
+        LeftSectionCardIMGElement.classList.add("mainSection__left__cards__img");
+        LeftSectionCardIMGElement.src = "../img/Plaatje.webp";
+        sectionCardElement.appendChild(LeftSectionCardIMGElement);
+
+        this.LeftArticleElement.appendChild(sectionCardElement);
+      }
+    })();
   }
 
   render() {
@@ -125,9 +132,8 @@ class RightPanel {
   rightAudioElement;
   rightSourceElement;
 
-  constructor(mainElement, data) {
+  constructor(mainElement) {
     this.mainElement = mainElement;
-    this.data = data;
 
     this.RightArticleElement = document.createElement("article");
     this.RightArticleElement.classList.add("mainSection__right");
@@ -167,7 +173,7 @@ class RightPanel {
     this.rightSourceElement.innerText = "Source >";
     this.rightSourceElement.setAttribute("href", "https://www.youtube.com/watch?v=aKd_7kGalEA");
 
-    
+
   }
 
   render() {
@@ -225,9 +231,8 @@ class App {
 
     this.GetDataFromApi = new GetDataFromApi("../data/data.json");
     this.GetDataFromApi
-        .getData().then((data) => {
-          console.log(data);
-        });
+      .getData().then((data) => {
+      });
 
     this.header.render();
     this.MainPanel.render();
