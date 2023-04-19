@@ -21,6 +21,16 @@
             width: 28rem;
             height: 28rem;
             position: relative;
+            transition: transform 0.3s ease-out;
+
+            &:hover{
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+
+            &:onclik{
+                transform: scale(0.9);
+            }
 
             &__img{
                 width: 100%;
@@ -43,6 +53,7 @@
                 font-size: 1.1rem;
                 bottom: 1%;
                 left: 1%;
+                max-width: 70%;
                 background: map-get(colors.$baseColors, "backgroundtextcards");
                 color: map-get(colors.$baseColors, "colortextcards");;
                 font-weight: 200;
