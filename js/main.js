@@ -1,9 +1,4 @@
-const num1 = Math.floor(Math.random() * 8);
-const num2 = Math.floor(Math.random() * 8);
-const num3 = Math.floor(Math.random() * 8);
-const num4 = Math.floor(Math.random() * 8);
-
-console.log(num1, num2, num3, num4);
+let number = Math.floor(Math.random() * 8);
 
 
 
@@ -43,7 +38,7 @@ class Header {
 
     this.h2LogoTextElement = document.createElement("h2");
     this.h2LogoTextElement.classList = "header__logo";
-    this.h2LogoTextElement.innerText = "Logotext";
+    this.h2LogoTextElement.innerText = "Collection of Happiness";
   }
 
   render() {
@@ -90,7 +85,6 @@ class LeftSection {
 
     this.GetDataFromApi = new GetDataFromApi("../data/data.json");
 
-    // Use async/await to wait for data to be fetched from API
     (async () => {
       const data = await this.GetDataFromApi.getData();
 
@@ -99,11 +93,11 @@ class LeftSection {
         sectionCardElement.classList.add("mainSection__left__cards");
         const LeftSectionCardInfoElement = document.createElement("h4");
         LeftSectionCardInfoElement.classList.add("mainSection__left__cards__infotext");
-        LeftSectionCardInfoElement.innerText = data.episodes[num1].title;
+        LeftSectionCardInfoElement.innerText = data.episodes[number].title;
         sectionCardElement.appendChild(LeftSectionCardInfoElement);
         const LeftSectionCardDatumElement = document.createElement("h4");
         LeftSectionCardDatumElement.classList.add("mainSection__left__cards__img--datum");
-        LeftSectionCardDatumElement.innerText = "12-4-2023";
+        LeftSectionCardDatumElement.innerText = data.episodes[number].date;
         sectionCardElement.appendChild(LeftSectionCardDatumElement);
         const LeftSectionCardIMGElement = document.createElement("img");
         LeftSectionCardIMGElement.classList.add("mainSection__left__cards__img");
@@ -111,6 +105,7 @@ class LeftSection {
         sectionCardElement.appendChild(LeftSectionCardIMGElement);
 
         this.LeftArticleElement.appendChild(sectionCardElement);
+        number++;
       }
     })();
   }
@@ -131,12 +126,19 @@ class RightPanel {
   rightAudioSectionElement;
   rightAudioElement;
   rightSourceElement;
+  GetDataFromApi;
 
   constructor(mainElement) {
     this.mainElement = mainElement;
 
     this.RightArticleElement = document.createElement("article");
     this.RightArticleElement.classList.add("mainSection__right");
+
+    this.GetDataFromApi = new GetDataFromApi("../data/data.json");
+
+    (async () => {
+      const data = await this.GetDataFromApi.getData();
+          })();
 
     this.rightContainerElement = document.createElement("section");
     this.rightContainerElement.classList.add("mainSection__right__container");
