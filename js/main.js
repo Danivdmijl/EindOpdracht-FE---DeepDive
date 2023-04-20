@@ -184,21 +184,8 @@ class RightPanel {
     this.rightSectionIMGElement.classList.add("mainSection__left__cards__img");
     this.rightSectionIMGElement.src = "../img/plaatje.webp";
 
-    this.rightSectionTextElement = document.createElement("p");
-    this.rightSectionTextElement.classList.add("mainSection__right__container__text");
-    this.rightSectionTextElement.innerText = "Lorem";
-
     this.rightAudioSectionElement = document.createElement("section");
     this.rightAudioSectionElement.classList.add("mainSection__right__container__buttonWrapper");
-
-    this.rightAudioElement = document.createElement("audio");
-    this.rightAudioElement.src = "../Audio/unlimited.mp3";
-    this.rightAudioElement.controls = true;
-
-    this.rightSourceElement = document.createElement("a");
-    this.rightSourceElement.classList.add("mainSection__right__container__source")
-    this.rightSourceElement.innerText = "Source >";
-    this.rightSourceElement.setAttribute("href", "<https://www.youtube.com/watch?v=aKd_7kGalEA>");
   }
 
   async render() {
@@ -212,7 +199,20 @@ class RightPanel {
 
     this.rightSectionDatumElement = document.createElement("h4");
     this.rightSectionDatumElement.classList.add("mainSection__left__cards__img--datum");
-    this.rightSectionDatumElement.innerText = "12-4-2023";
+    this.rightSectionDatumElement.innerText = data.episodes[number1].date;
+
+    this.rightSectionTextElement = document.createElement("p");
+    this.rightSectionTextElement.classList.add("mainSection__right__container__text");
+    this.rightSectionTextElement.innerText = data.episodes[number1].summary;
+
+    this.rightAudioElement = document.createElement("audio");
+    this.rightAudioElement.src = data.episodes[number1].audio;
+    this.rightAudioElement.controls = true;
+
+    this.rightSourceElement = document.createElement("a");
+    this.rightSourceElement.classList.add("mainSection__right__container__source")
+    this.rightSourceElement.innerText = "Source >";
+    this.rightSourceElement.setAttribute("href", data.episodes[number1].url);
 
     this.RightArticleElement.appendChild(this.rightContainerElement);
     this.rightContainerElement.appendChild(this.rightSectionCardElement);
