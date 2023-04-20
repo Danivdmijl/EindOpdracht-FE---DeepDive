@@ -14,7 +14,7 @@
 
     .header {
         padding-top: 2rem;
-        width: 30%;
+        width: 100%;
         height: 8%;
         padding-bottom: 3rem;
     }
@@ -81,7 +81,7 @@
             height: 100%;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             flex-wrap: 2;
             flex-shrink: 4;
             gap: 2rem;
@@ -190,6 +190,7 @@
 }
 
 @media screen and (max-width:49.9375rem){
+
     main {
         width: 95vw;
         height: 100%;
@@ -205,7 +206,7 @@
         padding-right: 0.2rem;
         align-items: center;
         justify-content: center;
-    
+
         &__left{
             width: 100%;
             height: 100%;
@@ -283,7 +284,7 @@
                 }
     
                 &__buttonWrapper{
-                    width: 80%;
+                    width: 62%;
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: space-between;
@@ -307,7 +308,6 @@
         }
     }
     .header{
-        // background: blue;
         width: 100%;
         height: 20%;
         display: flex;
@@ -317,5 +317,13 @@
         &__logo{
             font-size: 5rem;
         }
+    }
+
+    .footer{
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        // background: orange;
+        height: 6%;
     }
 }
