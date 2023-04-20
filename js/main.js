@@ -1,5 +1,9 @@
-let number = Math.floor(Math.random() * 8);
+let number1 = Math.floor(Math.random() * 7);
+let number2 = Math.floor(Math.random() * 7);
+let number3 = Math.floor(Math.random() * 7);
+let number4 = Math.floor(Math.random() * 7);
 
+console.log(number1);
 
 
 class GetDataFromApi {
@@ -87,17 +91,46 @@ class LeftSection {
 
     (async () => {
       const data = await this.GetDataFromApi.getData();
+      let iteration = 1;
 
       for (let i = 1; i <= 4; i++) {
         const sectionCardElement = document.createElement("article");
         sectionCardElement.classList.add("mainSection__left__cards");
         const LeftSectionCardInfoElement = document.createElement("h4");
         LeftSectionCardInfoElement.classList.add("mainSection__left__cards__infotext");
-        LeftSectionCardInfoElement.innerText = data.episodes[number].title;
+
+        switch(iteration) {
+          case 2:
+            LeftSectionCardInfoElement.innerText = data.episodes[number2].title;
+            break;
+          case 3:
+            LeftSectionCardInfoElement.innerText = data.episodes[number3].title;
+            break;
+          case 4:
+            LeftSectionCardInfoElement.innerText = data.episodes[number4].title;
+            break;
+          default:
+            LeftSectionCardInfoElement.innerText = data.episodes[number1].title;
+        }
+
         sectionCardElement.appendChild(LeftSectionCardInfoElement);
         const LeftSectionCardDatumElement = document.createElement("h4");
         LeftSectionCardDatumElement.classList.add("mainSection__left__cards__img--datum");
-        LeftSectionCardDatumElement.innerText = data.episodes[number].date;
+
+        switch(iteration) {
+          case 2:
+            LeftSectionCardDatumElement.innerText = data.episodes[number2].date;
+            break;
+          case 3:
+            LeftSectionCardDatumElement.innerText = data.episodes[number3].date;
+            break;
+          case 4:
+            LeftSectionCardDatumElement.innerText = data.episodes[number4].date;
+            break;
+          default:
+            LeftSectionCardDatumElement.innerText = data.episodes[number1].date;
+        }
+
         sectionCardElement.appendChild(LeftSectionCardDatumElement);
         const LeftSectionCardIMGElement = document.createElement("img");
         LeftSectionCardIMGElement.classList.add("mainSection__left__cards__img");
@@ -105,7 +138,12 @@ class LeftSection {
         sectionCardElement.appendChild(LeftSectionCardIMGElement);
 
         this.LeftArticleElement.appendChild(sectionCardElement);
-        number++;
+
+        if (iteration === 4) {
+          iteration = 1;
+        } else {
+          iteration++;
+        }
       }
     })();
   }
@@ -136,24 +174,11 @@ class RightPanel {
 
     this.GetDataFromApi = new GetDataFromApi("../data/data.json");
 
-    (async () => {
-      const data = await this.GetDataFromApi.getData();
-          })();
-
     this.rightContainerElement = document.createElement("section");
     this.rightContainerElement.classList.add("mainSection__right__container");
 
     this.rightSectionCardElement = document.createElement("article");
     this.rightSectionCardElement.classList.add("mainSection__right__container__card");
-
-    this.rightSectionInfoElement = document.createElement("h4");
-    this.rightSectionInfoElement.classList.add("mainSection__left__cards__infotext");
-    this.rightSectionInfoElement.innerText = "Ian en de Snoepdief";
-
-
-    this.rightSectionDatumElement = document.createElement("h4");
-    this.rightSectionDatumElement.classList.add("mainSection__left__cards__img--datum");
-    this.rightSectionDatumElement.innerText = ("12-4-2023");
 
     this.rightSectionIMGElement = document.createElement("img");
     this.rightSectionIMGElement.classList.add("mainSection__left__cards__img");
@@ -161,7 +186,7 @@ class RightPanel {
 
     this.rightSectionTextElement = document.createElement("p");
     this.rightSectionTextElement.classList.add("mainSection__right__container__text");
-    this.rightSectionTextElement.innerText = ("Lorem ");
+    this.rightSectionTextElement.innerText = "Lorem";
 
     this.rightAudioSectionElement = document.createElement("section");
     this.rightAudioSectionElement.classList.add("mainSection__right__container__buttonWrapper");
@@ -173,13 +198,21 @@ class RightPanel {
     this.rightSourceElement = document.createElement("a");
     this.rightSourceElement.classList.add("mainSection__right__container__source")
     this.rightSourceElement.innerText = "Source >";
-    this.rightSourceElement.setAttribute("href", "https://www.youtube.com/watch?v=aKd_7kGalEA");
-
-
+    this.rightSourceElement.setAttribute("href", "<https://www.youtube.com/watch?v=aKd_7kGalEA>");
   }
 
-  render() {
+  async render() {
     this.mainElement.appendChild(this.RightArticleElement);
+
+    const data = await this.GetDataFromApi.getData();
+
+    this.rightSectionInfoElement = document.createElement("h4");
+    this.rightSectionInfoElement.classList.add("mainSection__left__cards__infotext");
+    this.rightSectionInfoElement.innerText = data.episodes[number1].title;
+
+    this.rightSectionDatumElement = document.createElement("h4");
+    this.rightSectionDatumElement.classList.add("mainSection__left__cards__img--datum");
+    this.rightSectionDatumElement.innerText = "12-4-2023";
 
     this.RightArticleElement.appendChild(this.rightContainerElement);
     this.rightContainerElement.appendChild(this.rightSectionCardElement);
@@ -193,6 +226,9 @@ class RightPanel {
     this.rightAudioSectionElement.appendChild(this.rightSourceElement);
   }
 }
+
+
+
 
 
 
