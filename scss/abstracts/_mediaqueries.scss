@@ -87,12 +87,10 @@
             gap: 2rem;
     
             &__cards{
-                // background: purple;
                 display: flex;
                 max-width: 28rem;
                 max-height: 28rem;
                 width: 40%;
-                height: auto;
                 position: relative;
                 flex-shrink: 4;
     
@@ -221,10 +219,9 @@
             &__cards{
                 // background: purple;
                 display: flex;
-                max-width: 28rem;
+                width: 45%;
+                height: 20rem;
                 max-height: 28rem;
-                width: 40%;
-                height: auto;
                 position: relative;
                 flex-shrink: 4;
     
