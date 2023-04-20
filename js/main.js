@@ -96,45 +96,49 @@ class LeftSection {
       for (let i = 1; i <= 4; i++) {
         const sectionCardElement = document.createElement("article");
         sectionCardElement.classList.add("mainSection__left__cards");
+
         const LeftSectionCardInfoElement = document.createElement("h4");
         LeftSectionCardInfoElement.classList.add("mainSection__left__cards__infotext");
+
+        const LeftSectionCardDatumElement = document.createElement("h4");
+        LeftSectionCardDatumElement.classList.add("mainSection__left__cards__img--datum");
+
+        const LeftSectionCardIMGElement = document.createElement("img");
+        LeftSectionCardIMGElement.classList.add("mainSection__left__cards__img");
+        LeftSectionCardIMGElement.src = "../img/Plaatje.webp";
 
         switch(iteration) {
           case 2:
             LeftSectionCardInfoElement.innerText = data.episodes[number2].title;
+            LeftSectionCardDatumElement.innerText = data.episodes[number2].date;
+            sectionCardElement.addEventListener("click", () => {
+              this.updateRightSection(data.episodes[number2]);
+            });
             break;
           case 3:
             LeftSectionCardInfoElement.innerText = data.episodes[number3].title;
+            LeftSectionCardDatumElement.innerText = data.episodes[number3].date;
+            sectionCardElement.addEventListener("click", () => {
+              this.updateRightSection(data.episodes[number3]);
+            });
             break;
           case 4:
             LeftSectionCardInfoElement.innerText = data.episodes[number4].title;
+            LeftSectionCardDatumElement.innerText = data.episodes[number4].date;
+            sectionCardElement.addEventListener("click", () => {
+              this.updateRightSection(data.episodes[number4]);
+            });
             break;
           default:
             LeftSectionCardInfoElement.innerText = data.episodes[number1].title;
+            LeftSectionCardDatumElement.innerText = data.episodes[number1].date;
+            sectionCardElement.addEventListener("click", () => {
+              this.updateRightSection(data.episodes[number1]);
+            });
         }
 
         sectionCardElement.appendChild(LeftSectionCardInfoElement);
-        const LeftSectionCardDatumElement = document.createElement("h4");
-        LeftSectionCardDatumElement.classList.add("mainSection__left__cards__img--datum");
-
-        switch(iteration) {
-          case 2:
-            LeftSectionCardDatumElement.innerText = data.episodes[number2].date;
-            break;
-          case 3:
-            LeftSectionCardDatumElement.innerText = data.episodes[number3].date;
-            break;
-          case 4:
-            LeftSectionCardDatumElement.innerText = data.episodes[number4].date;
-            break;
-          default:
-            LeftSectionCardDatumElement.innerText = data.episodes[number1].date;
-        }
-
         sectionCardElement.appendChild(LeftSectionCardDatumElement);
-        const LeftSectionCardIMGElement = document.createElement("img");
-        LeftSectionCardIMGElement.classList.add("mainSection__left__cards__img");
-        LeftSectionCardIMGElement.src = "../img/Plaatje.webp";
         sectionCardElement.appendChild(LeftSectionCardIMGElement);
 
         this.LeftArticleElement.appendChild(sectionCardElement);
@@ -148,10 +152,25 @@ class LeftSection {
     })();
   }
 
+  updateRightSection(data) {
+    const rightSectionInfoElement = document.querySelector(".mainSection__right__container__card h4");
+    const rightSectionDatumElement = document.querySelector(".mainSection__right__container__card h4:nth-child(2)");
+    const rightSectionTextElement = document.querySelector(".mainSection__right__container__text");
+    const rightAudioElement = document.querySelector(".mainSection__right__container__buttonWrapper audio");
+    const rightSourceElement = document.querySelector(".mainSection__right__container__source");
+
+    rightSectionInfoElement.innerText = data.title;
+    rightSectionDatumElement.innerText = data.date;
+    rightSectionTextElement.innerText = data.summary;
+    rightAudioElement.src = data.audio;
+    rightSourceElement.setAttribute("href", data.url);
+  }
+
   render() {
     this.mainElement.appendChild(this.LeftArticleElement);
   }
 }
+
 
 class RightPanel {
   placeToRenderMainSection;
