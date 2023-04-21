@@ -1,4 +1,5 @@
 @use "../abstracts/colors";
+@use "../abstracts/mixins";
 
 .mainSection{
     width: 100%;
@@ -6,11 +7,10 @@
     display: flex;
     padding-left: 3rem;
     padding-right: 3rem;
+    
 
     &__left{
-        width: 50%;
-        height: 100%;
-        display: flex;
+        @include mixins.panelsize;
         align-items: center;
         justify-content: flex-start;
         flex-wrap: wrap;
@@ -37,40 +37,32 @@
               }
 
             &__img{
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
+                @include mixins.leftimgsizes;
 
                 &--datum{
                     position: absolute;
-                    font-size: 1.1rem;
+                    @include mixins.infofontsize;
                     bottom: 1%;
                     right: 1%;
                     background: map-get(colors.$baseColors, "backgroundtextcards");
-                    color: map-get(colors.$baseColors, "colortextcards");
-                    font-weight: 200;
+                    color: map-get(colors.$baseColors, "colortextcards");   
                 }
             }
 
             &__infotext{
                 position: absolute;
-                font-size: 1.1rem;
+                @include mixins.infofontsize;
                 bottom: 1%;
                 left: 1%;
                 max-width: 70%;
                 background: map-get(colors.$baseColors, "backgroundtextcards");
                 color: map-get(colors.$baseColors, "colortextcards");;
-                font-weight: 200;
-
-                
             }
         }
     }
 
     &__right{
-        width: 50%;
-        height: 100%;
-        display: flex;
+        @include mixins.panelsize;
         flex-direction: column;
         align-items: flex-end;
 

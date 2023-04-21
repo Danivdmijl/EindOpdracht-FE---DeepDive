@@ -35,8 +35,9 @@ main {
 .header {
   width: 100%;
   height: 20%;
+  width: 50%;
+  height: 100%;
   display: flex;
-  justify-content: center;
   gap: 2rem;
 }
 .header__logo {
@@ -84,21 +85,21 @@ main {
 .mainSection__left__cards__img--datum {
   position: absolute;
   font-size: 1.1rem;
+  font-weight: 200;
   bottom: 1%;
   right: 1%;
   background: rgba(0, 0, 0, 0.5);
   color: #eceaea;
-  font-weight: 200;
 }
 .mainSection__left__cards__infotext {
   position: absolute;
   font-size: 1.1rem;
+  font-weight: 200;
   bottom: 1%;
   left: 1%;
   max-width: 70%;
   background: rgba(0, 0, 0, 0.5);
   color: #eceaea;
-  font-weight: 200;
 }
 .mainSection__right {
   width: 50%;

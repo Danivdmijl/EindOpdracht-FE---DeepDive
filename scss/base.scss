@@ -10,8 +10,7 @@ body{
 }
 
 main{
-    width: 95vw;
-    height: 90vh;
+    @include mixins.mainsize;
     padding: 5rem;
     background: map-get(colors.$baseColors, "mainbackground");  
     display: flex;

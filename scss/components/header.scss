@@ -1,9 +1,10 @@
+@use "../abstracts/mixins";
+
 .header{
     // background: blue;
     width: 100%;
     height: 20%;
-    display: flex;
-    justify-content: center;
+    @include mixins.panelsize;
     gap: 2rem;
 
     &__logo{
