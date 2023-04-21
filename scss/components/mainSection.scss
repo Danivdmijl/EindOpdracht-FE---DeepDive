@@ -1,5 +1,6 @@
 @use "../abstracts/colors";
 @use "../abstracts/mixins";
+@use "../abstracts/vars";
 
 .mainSection{
     width: 100%;
@@ -22,7 +23,7 @@
             height: 28rem;
             position: relative;
             transition: transform 0.1s ease-out;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            box-shadow: vars.$box-shadow;
 
             &:hover {
                 transform: scale(1.05);
@@ -75,7 +76,6 @@
 
 
             &__card{
-                // background: purple;
                 border: solid map-get(colors.$baseColors, "background") 0.3rem;
                 width: 100%;
                 height: 28rem;
@@ -83,7 +83,7 @@
                 align-items: center;
                 justify-content: center;
                 position: relative;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                box-shadow: vars.$box-shadow;
                 
             }
     
@@ -111,7 +111,7 @@
                 color: map-get(colors.$baseColors, "colortextcards");;
                 border-radius: 0.5rem;
                 cursor: pointer;
-                transition: background-color 0.3s ease-in-out;
+                transition: background-color vars.$animation-duration vars.$animation-easing;
                 width: 27rem;
                 height: 3rem;
 

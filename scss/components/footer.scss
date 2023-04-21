@@ -2,6 +2,6 @@
 
 .footer{
     @include mixins.footerheaderflex;
-    // background: orange;
+    align-items: flex-end;
     height: 5.7%;
 }
