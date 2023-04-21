@@ -1,10 +1,9 @@
 @use "./abstracts/colors";
+@use "./abstracts/mixins";
 
 body{
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include mixins.center;
     background: map-get(colors.$baseColors, "background");
     font-family: 'Ubuntu', sans-serif;
     padding: 3rem;
